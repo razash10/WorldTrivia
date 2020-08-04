@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:max="100"
+            android:max="70"
             android:paddingHorizontal="15dp"
             android:progress="0" />
 
@@ -109,6 +109,7 @@
             android:textSize="12sp"/>
 
         <ImageView
+            android:id="@+id/ivLives"
             android:layout_width="match_parent"
             android:layout_height="40sp"
             android:layout_marginTop="10dp"

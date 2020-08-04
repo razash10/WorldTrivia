@@ -19,17 +19,14 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private val quCountryOfCapital = Constants.getQuestionsCountryOfCapital()
     private val quCapitalOfCountry = Constants.getQuestionsCapitalOfCountry()
 
-    private var quSize = quCountryOfFlag.size + quCapitalOfFlag.size +
-            quCountryOfCapital.size + quCapitalOfCountry.size
-
     private var answer: Question? = null
     private var countDownTimer: CountDownTimer? = null
+
+    private var lives = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
-
-        Log.i("Questions Size", "$quSize")
 
         setQuestion()
 
@@ -40,14 +37,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    override fun onClick(view: View?) {
-        when(view?.id) {
-            R.id.btnOption1 -> processChosenAnswer(btnOption1)
-            R.id.btnOption2 -> processChosenAnswer(btnOption2)
-            R.id.btnOption3 -> processChosenAnswer(btnOption3)
-            R.id.btnOption4 -> processChosenAnswer(btnOption4)
-        }
-    }
 
     private fun buttonsAreClickable(option: Boolean) {
         btnOption1.isClickable = option
@@ -56,22 +45,39 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         btnOption4.isClickable = option
     }
 
+    override fun onClick(view: View?) {
+        countDownTimer?.cancel()
+
+        buttonsAreClickable(false)
+
+        when(view?.id) {
+            R.id.btnOption1 -> preProcessChosenAnswer(btnOption1)
+            R.id.btnOption2 -> preProcessChosenAnswer(btnOption2)
+            R.id.btnOption3 -> preProcessChosenAnswer(btnOption3)
+            R.id.btnOption4 -> preProcessChosenAnswer(btnOption4)
+        }
+    }
+
+    private fun preProcessChosenAnswer(selectedOption: TextView) {
+        selectedOption.typeface = Typeface.DEFAULT_BOLD
+        selectedOption.background = ContextCompat
+            .getDrawable(this, R.drawable.chosen_option_delay)
+        Handler().postDelayed({ processChosenAnswer(selectedOption) }, 2000)
+    }
+
     private fun processChosenAnswer(selectedOption: TextView) {
         selectedOption.typeface = Typeface.DEFAULT_BOLD
 
         if(answer!!.answer == selectedOption.text.toString()) {
             selectedOption.background = ContextCompat
-                .getDrawable(this, R.drawable.correct_option_border_bg)
+                .getDrawable(this, R.drawable.chosen_correct_option)
         }
         else {
             selectedOption.background = ContextCompat
-                .getDrawable(this, R.drawable.wrong_option_border_bg)
+                .getDrawable(this, R.drawable.chosen_wrong_option)
             markCorrectAnswer()
+            lives--
         }
-
-        countDownTimer?.cancel()
-
-        buttonsAreClickable(false)
 
         when(answer) {
             in quCountryOfFlag -> quCountryOfFlag.remove(answer!!)
@@ -80,11 +86,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             in quCapitalOfCountry -> quCapitalOfCountry.remove(answer!!)
         }
 
-        quSize--
-
-        Handler().postDelayed({
-            setQuestion()
-        }, 3000)
+        Handler().postDelayed({ setQuestion() }, 3000)
 
     }
 
@@ -117,7 +119,20 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         btnOption4.typeface = Typeface.DEFAULT
     }
 
+    private fun validateLives() {
+        when(lives) {
+            1 -> ivLives.setImageResource(R.drawable.heart)
+            0 -> ivLives.setImageResource(0)
+            -1 -> {
+                Log.i("Exit", "Out of lives")
+                exitProcess(0)
+            }
+        }
+    }
+
     private fun setQuestion() {
+        validateLives()
+
         buttonsAreClickable(true)
 
         resetButtonsViewToDefault()
@@ -130,7 +145,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         if(quCapitalOfCountry.size >= 4) categoryOptions.add(3)
 
         if(categoryOptions.isEmpty()) {
-            Log.i("Exit", "FINISHED GAME")
+            Log.i("Exit", "Out of questions")
             exitProcess(0)
         }
 
@@ -164,6 +179,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         val randAnswer = (0..3).random()
         answer = questions[randomIndexList[randAnswer]]
+
         ivFlag.setImageResource(answer!!.image)
 
         btnOption1.text = questions[randQuestion1].answer
@@ -183,16 +199,21 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun startTimer() {
         var i = 0
-        countDownTimer = object : CountDownTimer(10000, 1000) {
+        countDownTimer = object : CountDownTimer(7000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 Log.v("Timer", "Tick of Progress$i$millisUntilFinished")
                 progressBar.progress = (++i) * 10
             }
 
             override fun onFinish() {
-                //Do what you want
                 Log.v("Timer", "Time Ran Out")
-                progressBar.progress = 100
+                progressBar.progress = 70
+                buttonsAreClickable(false)
+                markCorrectAnswer()
+                lives--
+                Handler().postDelayed({
+                    setQuestion()
+                }, 3000)
             }
         }.start()
     }
