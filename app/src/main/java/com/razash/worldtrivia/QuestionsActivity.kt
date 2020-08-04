@@ -14,10 +14,11 @@ import kotlin.collections.ArrayList
 import kotlin.system.exitProcess
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
-    private val quCountryOfFlag = Constants.getQuestionsCountryOfFlag()
-    private val quCapitalOfFlag = Constants.getQuestionsCapitalOfFlag()
-    private val quCountryOfCapital = Constants.getQuestionsCountryOfCapital()
-    private val quCapitalOfCountry = Constants.getQuestionsCapitalOfCountry()
+    private val countries = Constants.getCountries()
+    private val quCountryOfFlag = ArrayList<Question>()
+    private val quCapitalOfFlag = ArrayList<Question>()
+    private val quCountryOfCapital = ArrayList<Question>()
+    private val quCapitalOfCountry = ArrayList<Question>()
 
     private var answer: Question? = null
     private var countDownTimer: CountDownTimer? = null
@@ -28,6 +29,16 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
+
+        // Questions Builder
+        for(country in countries) {
+            quCountryOfFlag.add(Question("", country.name, country.flag))
+            if(country.capital.isNotEmpty()) {
+                quCapitalOfFlag.add(Question("", country.capital, country.flag))
+                quCountryOfCapital.add(Question(country.capital, country.name, 0))
+                quCapitalOfCountry.add(Question(country.name, country.capital, 0))
+            }
+        }
 
         setQuestion()
 
@@ -207,7 +218,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             override fun onTick(millisUntilFinished: Long) {
                 Log.v("Timer", "Tick of Progress $i $millisUntilFinished")
                 pgTimer.progress = (++i) * 2
-                currentScoreOfQuestion = millisUntilFinished
+                currentScoreOfQuestion = (millisUntilFinished / 100) + 50
             }
 
             override fun onFinish() {
@@ -216,14 +227,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 buttonsAreClickable(false)
                 markCorrectAnswer()
                 lives--
-                Handler().postDelayed({
-                    setQuestion()
-                }, 3000)
+                Handler().postDelayed({ setQuestion() }, 3000)
             }
         }.start()
 
     }
-
-
 
 }
