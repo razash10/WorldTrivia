@@ -23,6 +23,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var countDownTimer: CountDownTimer? = null
 
     private var lives = 2
+    private var currentScoreOfQuestion: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +37,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         btnOption4.setOnClickListener(this)
 
     }
-
 
     private fun buttonsAreClickable(option: Boolean) {
         btnOption1.isClickable = option
@@ -62,15 +62,19 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         selectedOption.typeface = Typeface.DEFAULT_BOLD
         selectedOption.background = ContextCompat
             .getDrawable(this, R.drawable.chosen_option_delay)
-        Handler().postDelayed({ processChosenAnswer(selectedOption) }, 2000)
+
+        Handler().postDelayed({ processChosenAnswer(selectedOption) }, 3000)
     }
 
     private fun processChosenAnswer(selectedOption: TextView) {
         selectedOption.typeface = Typeface.DEFAULT_BOLD
 
-        if(answer!!.answer == selectedOption.text.toString()) {
+        if(answer!!.answer == selectedOption.text.toString()) { // if selected correct answer
             selectedOption.background = ContextCompat
                 .getDrawable(this, R.drawable.chosen_correct_option)
+            var currentScore = tvScore.text.toString().toLong()
+            currentScore += currentScoreOfQuestion
+            tvScore.text = currentScore.toString()
         }
         else {
             selectedOption.background = ContextCompat
@@ -199,15 +203,16 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun startTimer() {
         var i = 0
-        countDownTimer = object : CountDownTimer(7000, 1000) {
+        countDownTimer = object : CountDownTimer(10000, 10) {
             override fun onTick(millisUntilFinished: Long) {
-                Log.v("Timer", "Tick of Progress$i$millisUntilFinished")
-                progressBar.progress = (++i) * 10
+                Log.v("Timer", "Tick of Progress $i $millisUntilFinished")
+                pgTimer.progress = (++i) * 2
+                currentScoreOfQuestion = millisUntilFinished
             }
 
             override fun onFinish() {
                 Log.v("Timer", "Time Ran Out")
-                progressBar.progress = 70
+                pgTimer.progress = 1050
                 buttonsAreClickable(false)
                 markCorrectAnswer()
                 lives--
@@ -216,7 +221,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 }, 3000)
             }
         }.start()
+
     }
+
 
 
 }
