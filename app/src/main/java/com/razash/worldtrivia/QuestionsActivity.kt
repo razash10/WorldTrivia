@@ -10,11 +10,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_questions.*
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.concurrent.schedule
-import kotlin.concurrent.timerTask
-
+import kotlin.system.exitProcess
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private val quCountryOfFlag = Constants.getQuestionsCountryOfFlag()
@@ -52,6 +49,13 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun buttonsAreClickable(option: Boolean) {
+        btnOption1.isClickable = option
+        btnOption2.isClickable = option
+        btnOption3.isClickable = option
+        btnOption4.isClickable = option
+    }
+
     private fun processChosenAnswer(selectedOption: TextView) {
         selectedOption.typeface = Typeface.DEFAULT_BOLD
 
@@ -67,10 +71,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         countDownTimer?.cancel()
 
-        btnOption1.isClickable = false
-        btnOption2.isClickable = false
-        btnOption3.isClickable = false
-        btnOption4.isClickable = false
+        buttonsAreClickable(false)
 
         when(answer) {
             in quCountryOfFlag -> quCountryOfFlag.remove(answer!!)
@@ -100,12 +101,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun setQuestion() {
-        btnOption1.isClickable = true
-        btnOption2.isClickable = true
-        btnOption3.isClickable = true
-        btnOption4.isClickable = true
-
+    private fun resetButtonsViewToDefault() {
         btnOption1.background = ContextCompat.getDrawable(this,
             R.drawable.default_option_border_bg)
         btnOption2.background = ContextCompat.getDrawable(this,
@@ -119,36 +115,53 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         btnOption2.typeface = Typeface.DEFAULT
         btnOption3.typeface = Typeface.DEFAULT
         btnOption4.typeface = Typeface.DEFAULT
+    }
 
-        val randCategory = (0..3).random()
+    private fun setQuestion() {
+        buttonsAreClickable(true)
 
-        if(randCategory == 0) {
-            tvQuestion.text = "לאיזו מדינה שייך הדגל שבתמונה?"
-            processLayout(quCountryOfFlag)
+        resetButtonsViewToDefault()
+
+        val categoryOptions = ArrayList<Int>()
+
+        if(quCountryOfFlag.size >= 4) categoryOptions.add(0)
+        if(quCapitalOfFlag.size >= 4) categoryOptions.add(1)
+        if(quCountryOfCapital.size >= 4) categoryOptions.add(2)
+        if(quCapitalOfCountry.size >= 4) categoryOptions.add(3)
+
+        if(categoryOptions.isEmpty()) {
+            Log.i("Exit", "FINISHED GAME")
+            exitProcess(0)
         }
 
-        if(randCategory == 1) {
-            tvQuestion.text = "לאיזו עיר בירה שייך הדגל שבתמונה?"
-            processLayout(quCountryOfFlag)
-        }
-
-        if(randCategory == 2) {
-            tvQuestion.text = "לאיזו מדינה שייכת עיר הבירה"
-            processLayout(quCountryOfCapital)
-        }
-
-        if(randCategory == 3) {
-            tvQuestion.text = "מהי עיר הבירה של"
-            processLayout(quCapitalOfCountry)
+        when (categoryOptions.random()) {
+            0 -> {
+                tvQuestion.text = "לאיזו מדינה שייך הדגל שבתמונה?"
+                processLayout(quCountryOfFlag)
+            }
+            1 -> {
+                tvQuestion.text = "לאיזו עיר בירה שייך הדגל שבתמונה?"
+                processLayout(quCapitalOfFlag)
+            }
+            2 -> {
+                tvQuestion.text = "לאיזו מדינה שייכת עיר הבירה"
+                processLayout(quCountryOfCapital)
+            }
+            3 -> {
+                tvQuestion.text = "מהי עיר הבירה של"
+                processLayout(quCapitalOfCountry)
+            }
         }
     }
 
     private fun processLayout(questions: ArrayList<Question>) {
         val randomIndexList = (0 until questions.size).shuffled().take(4)
+
         val randQuestion1 = randomIndexList[0]
         val randQuestion2 = randomIndexList[1]
         val randQuestion3 = randomIndexList[2]
         val randQuestion4 = randomIndexList[3]
+
         val randAnswer = (0..3).random()
         answer = questions[randomIndexList[randAnswer]]
         ivFlag.setImageResource(answer!!.image)
@@ -164,11 +177,11 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             tvQuestion.text = string
         }
 
-        processTimer()
+        startTimer()
 
     }
 
-    private fun processTimer() {
+    private fun startTimer() {
         var i = 0
         countDownTimer = object : CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
