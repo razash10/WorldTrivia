@@ -1,6 +1,10 @@
 package com.razash.worldtrivia
 
 object Constants {
+
+    const val USER_NAME: String = "user_name"
+    const val FINAL_SCORE: String = "final_score"
+
     fun getCountries() : ArrayList<Country> {
         val countries = ArrayList<Country>()
 

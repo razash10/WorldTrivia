@@ -16,10 +16,11 @@ class MainActivity : AppCompatActivity() {
 
         btnStart.setOnClickListener {
             if(enteredName.text.toString().isEmpty()) {
-                Toast.makeText(this, "צריך שם בשביל להתחיל לשחק",
+                Toast.makeText(this, "הכנס/י שם בשביל להתחיל לשחק",
                     Toast.LENGTH_SHORT).show()
             } else {
                 val intent = Intent(this, QuestionsActivity::class.java)
+                intent.putExtra(Constants.USER_NAME, enteredName.text.toString())
                 startActivity(intent)
                 finish()
             }

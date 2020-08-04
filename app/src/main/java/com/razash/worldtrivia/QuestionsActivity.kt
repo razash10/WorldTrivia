@@ -1,9 +1,11 @@
 package com.razash.worldtrivia
 
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.os.MessageQueue
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -26,9 +28,15 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var lives = 2
     private var currentScoreOfQuestion: Long = 0
 
+    private var userName: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
+
+        window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL;
+
+        userName = intent.getStringExtra(Constants.USER_NAME)
 
         // Questions Builder
         for(country in countries) {
@@ -74,7 +82,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         selectedOption.background = ContextCompat
             .getDrawable(this, R.drawable.chosen_option_delay)
 
-        Handler().postDelayed({ processChosenAnswer(selectedOption) }, 3000)
+        Handler().postDelayed({ processChosenAnswer(selectedOption) }, 2000)
     }
 
     private fun processChosenAnswer(selectedOption: TextView) {
@@ -101,7 +109,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             in quCapitalOfCountry -> quCapitalOfCountry.remove(answer!!)
         }
 
-        Handler().postDelayed({ setQuestion() }, 3000)
+        Handler().postDelayed({ setQuestion() }, 2000)
 
     }
 
@@ -138,11 +146,17 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         when(lives) {
             1 -> ivLives.setImageResource(R.drawable.heart)
             0 -> ivLives.setImageResource(0)
-            -1 -> {
-                Log.i("Exit", "Out of lives")
-                exitProcess(0)
-            }
+            -1 -> finishGame()
         }
+
+    }
+
+    private fun finishGame() {
+        val intent = Intent(this, ResultActivity::class.java)
+        intent.putExtra(Constants.USER_NAME, userName)
+        intent.putExtra(Constants.FINAL_SCORE, tvScore.text.toString())
+        startActivity(intent)
+        finish()
     }
 
     private fun setQuestion() {
@@ -159,10 +173,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         if(quCountryOfCapital.size >= 4) categoryOptions.add(2)
         if(quCapitalOfCountry.size >= 4) categoryOptions.add(3)
 
-        if(categoryOptions.isEmpty()) {
-            Log.i("Exit", "Out of questions")
-            exitProcess(0)
-        }
+        if(categoryOptions.isEmpty()) finishGame()
 
         when (categoryOptions.random()) {
             0 -> {
@@ -227,7 +238,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 buttonsAreClickable(false)
                 markCorrectAnswer()
                 lives--
-                Handler().postDelayed({ setQuestion() }, 3000)
+                Handler().postDelayed({ setQuestion() }, 2000)
             }
         }.start()
 
