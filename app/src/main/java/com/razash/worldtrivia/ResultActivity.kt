@@ -1,10 +1,15 @@
 package com.razash.worldtrivia
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.Parser
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_result.*
+
+data class Score(val a: String, val b: Int)
 
 class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,13 +17,13 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         tvName.text = intent.getStringExtra(Constants.USER_NAME)
-        val scoreText = "השגת " + intent.getStringExtra(Constants.FINAL_SCORE) + " נקודות"
+        val score = intent.getStringExtra(Constants.FINAL_SCORE)?.toInt()
+        val scoreText = "השגת $score נקודות"
         tvScore.text = scoreText
 
-        val score = intent.getStringExtra(Constants.FINAL_SCORE)?.toInt()
         if(score == 0) {
-            ivTrophy.setImageResource(0)
-            tvCongrats.text = "אופסי..."
+            ivTrophy.setImageResource(R.drawable.sad_pepe)
+            tvCongrats.text = "אוי לא"
         }
         else when(score) {
             in 1..299 -> tvCongrats.text = "טוב!"
@@ -43,5 +48,22 @@ class ResultActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        btnLeaderboard.setOnClickListener {
+            val intent = Intent(this, LeaderboardActivity::class.java)
+            intent.putExtra(Constants.USER_NAME, tvName.text.toString())
+            startActivity(intent)
+            finish()
+        }
+
+        if(score!! > 0) {
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("ScoreBoard")
+            val post: MutableMap<String, Any> = HashMap()
+            post["name"] = tvName.text.toString()
+            post["score"] = score
+            myRef.push().setValue(post)
+        }
+
     }
 }

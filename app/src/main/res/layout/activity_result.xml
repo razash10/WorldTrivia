@@ -12,6 +12,7 @@
     tools:context=".ResultActivity">
 
     <ImageView
+        android:layout_marginTop="25dp"
         android:id="@+id/ivTrophy"
         android:layout_width="wrap_content"
         android:layout_height="250dp"
@@ -64,6 +65,17 @@
         android:layout_marginTop="15dp"
         android:background="@android:color/white"
         android:text="סיום"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnLeaderboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/white"
+        android:text="טבלת שיאים"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="bold" />

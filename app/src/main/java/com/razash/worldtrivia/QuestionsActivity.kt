@@ -30,6 +30,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private var userName: String? = null
 
+    private var gameOver = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
@@ -43,10 +45,17 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             quCountryOfFlag.add(Question("", country.name, country.flag))
             if(country.capital.isNotEmpty()) {
                 quCapitalOfFlag.add(Question("", country.capital, country.flag))
-                quCountryOfCapital.add(Question(country.capital, country.name, 0))
-                quCapitalOfCountry.add(Question(country.name, country.capital, 0))
+                if(country.name != country.capital) {
+                    quCountryOfCapital.add(Question(country.capital, country.name, 0))
+                    quCapitalOfCountry.add(Question(country.name, country.capital, 0))
+                }
             }
         }
+
+        val size = quCountryOfFlag.size + quCapitalOfFlag.size +
+                quCountryOfCapital.size + quCapitalOfCountry.size
+
+        Log.i("Number of questions", "$size")
 
         setQuestion()
 
@@ -152,6 +161,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun finishGame() {
+        gameOver = true
+        countDownTimer?.cancel()
         val intent = Intent(this, ResultActivity::class.java)
         intent.putExtra(Constants.USER_NAME, userName)
         intent.putExtra(Constants.FINAL_SCORE, tvScore.text.toString())
@@ -227,6 +238,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         var i = 0
         countDownTimer = object : CountDownTimer(10000, 10) {
             override fun onTick(millisUntilFinished: Long) {
+                if(gameOver) cancel()
                 Log.v("Timer", "Tick of Progress $i $millisUntilFinished")
                 pgTimer.progress = (++i) * 2
                 currentScoreOfQuestion = (millisUntilFinished / 100) + 50
