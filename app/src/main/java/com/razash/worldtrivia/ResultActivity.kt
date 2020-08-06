@@ -2,14 +2,9 @@ package com.razash.worldtrivia
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Parser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_result.*
-
-data class Score(val a: String, val b: Int)
 
 class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

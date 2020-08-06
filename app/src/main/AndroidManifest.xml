@@ -3,13 +3,13 @@
     package="com.razash.worldtrivia">
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/NoActionBarTheme">
-        <activity android:name=".LeaderboardActivity"></activity>
+        android:theme="@style/NoActionBarTheme"
+        android:allowBackup="true">
+        <activity android:name=".LeaderboardActivity" />
         <activity
             android:name=".ResultActivity"
             android:screenOrientation="portrait"
@@ -21,7 +21,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme"
+            android:theme="@style/ThirdTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

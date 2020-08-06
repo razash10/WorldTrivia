@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">טריוויה עולמית</string>
+    <string name="worldTrivia">טריוויה עולמית</string>
+    <string name="welcome">ברוכים הבאים</string>
+    <string name="whatsYourName">מה שמך בישראל?</string>
+    <string name="letsStart">מתחילים</string>
+    <string name="yourNameHere">השם שלך</string>
+    <string name="worldChampions">אלופי העולם</string>
+    <string name="finalScore">נקודות</string>
+    <string name="playerName">שם</string>
+    <string name="loadingText">טוען…</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_10">10</string>
+    <string name="restartGame">משחק חוזר</string>
+    <string name="endGame">סיום</string>
+    <string name="scoreBoard">טבלת שיאים</string>
+    <string name="greetings">ברכות</string>
+    <string name="image">image</string>
+    <string name="flagImage">תמונה של דגל של מדינה</string>
+    <string name="question">לאיזו מדינה שייך הדגל שבתמונה?</string>
+    <string name="option1">אפשרות 1</string>
+    <string name="option2">אפשרות 2</string>
+    <string name="option3">אפשרות 3</string>
+    <string name="option4">אפשרות 4</string>
+    <string name="_0">0</string>
+    <string name="currentScore">נקודות</string>
+    <string name="livesLeft">חיים שנותרו</string>
 </resources>

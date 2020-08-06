@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,7 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="120sp"
             android:layout_margin="10dp"
-            android:src="@drawable/il" />
+            android:src="@drawable/il"
+            android:contentDescription="@string/flagImage" />
         
         <TextView
             android:id="@+id/tvQuestion"
@@ -40,7 +40,7 @@
             android:textColor="#363A43"
             android:textSize="18sp"
             android:gravity="center"
-            android:text="לאיזו מדינה שייך הדגל שבתמונה?"/>
+            android:text="@string/question"/>
 
         <TextView
             android:id="@+id/btnOption1"
@@ -49,10 +49,10 @@
             android:layout_margin="10dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:text="אפשרות 1" />
+            android:text="@string/option1" />
 
         <TextView
             android:id="@+id/btnOption2"
@@ -61,10 +61,10 @@
             android:layout_margin="10dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:text="אפשרות 2" />
+            android:text="@string/option2" />
 
         <TextView
             android:id="@+id/btnOption3"
@@ -73,10 +73,10 @@
             android:layout_margin="10dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:text="אפשרות 3" />
+            android:text="@string/option3" />
 
         <TextView
             android:id="@+id/btnOption4"
@@ -85,10 +85,10 @@
             android:layout_margin="10dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:text="אפשרות 4" />
+            android:text="@string/option4" />
 
 
         <TextView
@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#363A43"
-            android:text="0"
+            android:text="@string/_0"
             android:gravity="center"
             android:textSize="22sp"
             android:layout_marginTop="10dp"
@@ -106,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#363A43"
-            android:text="נקודות"
+            android:text="@string/currentScore"
             android:gravity="center"
             android:textSize="12sp"/>
 
@@ -115,7 +115,8 @@
             android:layout_width="match_parent"
             android:layout_height="40sp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/hearts" />
+            android:src="@drawable/hearts"
+            android:contentDescription="@string/livesLeft" />
 
     </LinearLayout>
 

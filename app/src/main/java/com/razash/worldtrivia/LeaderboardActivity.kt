@@ -9,7 +9,6 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_leaderboard.*
 import kotlinx.android.synthetic.main.activity_leaderboard.btnFinish
 import kotlinx.android.synthetic.main.activity_leaderboard.btnReplay
-import kotlinx.android.synthetic.main.activity_result.*
 
 class LeaderboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

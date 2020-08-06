@@ -5,7 +5,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
-import android.os.MessageQueue
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_questions.*
 import kotlin.collections.ArrayList
-import kotlin.system.exitProcess
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private val countries = Constants.getCountries()
@@ -36,7 +35,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
 
-        window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL;
+        window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL
 
         userName = intent.getStringExtra(Constants.USER_NAME)
 
@@ -91,7 +90,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         selectedOption.background = ContextCompat
             .getDrawable(this, R.drawable.chosen_option_delay)
 
-        Handler().postDelayed({ processChosenAnswer(selectedOption) }, 2000)
+        Handler(Looper.getMainLooper()).postDelayed({
+            processChosenAnswer(selectedOption) }, 2000)
     }
 
     private fun processChosenAnswer(selectedOption: TextView) {
@@ -118,7 +118,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             in quCapitalOfCountry -> quCapitalOfCountry.remove(answer!!)
         }
 
-        Handler().postDelayed({ setQuestion() }, 2000)
+        Handler(Looper.getMainLooper()).postDelayed({ setQuestion() }, 2000)
 
     }
 
@@ -250,7 +250,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 buttonsAreClickable(false)
                 markCorrectAnswer()
                 lives--
-                Handler().postDelayed({ setQuestion() }, 2000)
+                Handler(Looper.getMainLooper()).postDelayed({ setQuestion() }, 2000)
             }
         }.start()
 
