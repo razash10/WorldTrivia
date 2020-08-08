@@ -33,4 +33,5 @@
     <string name="_0">0</string>
     <string name="currentScore">נקודות</string>
     <string name="livesLeft">חיים שנותרו</string>
+    <string name="newGame">משחק חדש</string>
 </resources>

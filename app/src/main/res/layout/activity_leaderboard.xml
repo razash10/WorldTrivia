@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/_bg"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:padding="20dp"
     android:layoutDirection="rtl"
     tools:context=".LeaderboardActivity">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layoutDirection="rtl"
+    android:gravity="center_horizontal"
+    android:padding="20dp">
+
     <TextView
+        android:layout_marginTop="5dp"
         android:id="@+id/tvCongrats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="@string/worldChampions"
         android:textColor="@android:color/white"
         android:textSize="28sp"
@@ -23,7 +28,8 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="50dp">
 
         <TableRow
             android:background="#F39C12"
@@ -40,8 +46,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:textStyle="bold"
+                android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/playerName" />
 
@@ -70,8 +77,8 @@
                 android:id="@+id/tvName1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
+                android:gravity="right"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -103,8 +110,8 @@
                 android:id="@+id/tvName2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
+                android:gravity="right"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -135,8 +142,8 @@
                 android:id="@+id/tvName3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
+                android:gravity="right"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -168,8 +175,8 @@
                 android:id="@+id/tvName4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
+                android:gravity="right"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -200,8 +207,8 @@
                 android:id="@+id/tvName5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
+                android:gravity="right"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -232,8 +239,8 @@
                 android:id="@+id/tvName6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
+                android:gravity="right"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -262,10 +269,10 @@
 
             <TextView
                 android:id="@+id/tvName7"
+                android:gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -296,8 +303,8 @@
                 android:id="@+id/tvName8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
+                android:gravity="right"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -328,8 +335,8 @@
                 android:id="@+id/tvName9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
+                android:gravity="right"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -360,8 +367,8 @@
                 android:id="@+id/tvName10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start"
+                android:layout_weight="4"
+                android:gravity="right"
                 android:paddingHorizontal="5dp"
                 android:textColor="@android:color/black"
                 android:text="@string/loadingText" />
@@ -382,7 +389,6 @@
         android:id="@+id/btnReplay"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="50dp"
         android:background="@android:color/white"
         android:text="@string/restartGame"
         android:textColor="@color/colorPrimary"
@@ -393,7 +399,7 @@
         android:id="@+id/btnFinish"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/white"
         android:text="@string/endGame"
         android:textColor="@color/colorPrimary"
@@ -401,3 +407,5 @@
         android:textStyle="bold" />
 
 </LinearLayout>
+
+</ScrollView>

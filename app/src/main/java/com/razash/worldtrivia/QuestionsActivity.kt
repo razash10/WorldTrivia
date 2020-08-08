@@ -91,11 +91,13 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             .getDrawable(this, R.drawable.chosen_option_delay)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            processChosenAnswer(selectedOption) }, 2000)
+            processChosenAnswer(selectedOption) }, 1000)
     }
 
     private fun processChosenAnswer(selectedOption: TextView) {
         selectedOption.typeface = Typeface.DEFAULT_BOLD
+
+        var delay: Long = 1000
 
         if(answer!!.answer == selectedOption.text.toString()) { // if selected correct answer
             selectedOption.background = ContextCompat
@@ -109,6 +111,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 .getDrawable(this, R.drawable.chosen_wrong_option)
             markCorrectAnswer()
             lives--
+            delay = 2000
         }
 
         when(answer) {
@@ -118,7 +121,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             in quCapitalOfCountry -> quCapitalOfCountry.remove(answer!!)
         }
 
-        Handler(Looper.getMainLooper()).postDelayed({ setQuestion() }, 2000)
+        Handler(Looper.getMainLooper()).postDelayed({ setQuestion() }, delay)
 
     }
 

@@ -1,81 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/_bg"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:padding="20dp"
     android:layoutDirection="rtl"
+    android:background="@drawable/_bg"
     tools:context=".ResultActivity">
 
-    <ImageView
-        android:layout_marginTop="25dp"
-        android:id="@+id/ivTrophy"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:contentDescription="@string/image"
-        android:src="@drawable/ic_trophy" />
-
-    <TextView
-        android:id="@+id/tvCongrats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/greetings"
-        android:textColor="@android:color/white"
-        android:textSize="28sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="ישראל ישראלי" />
-
-    <TextView
-        android:id="@+id/tvScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        tools:text=" נקודות" />
-
-    <Button
-        android:id="@+id/btnReplay"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="50dp"
-        android:background="@android:color/white"
-        android:text="@string/restartGame"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnFinish"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:background="@android:color/white"
-        android:text="@string/endGame"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/ivTrophy"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/ic_trophy" />
 
-    <Button
-        android:id="@+id/btnLeaderboard"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:background="@android:color/white"
-        android:text="@string/scoreBoard"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvCongrats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/greetings"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="ישראל ישראלי" />
+
+        <TextView
+            android:id="@+id/tvScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            tools:text=" נקודות" />
+
+        <Button
+            android:id="@+id/btnReplay"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="50dp"
+            android:background="#FFFFFF"
+            android:text="@string/restartGame"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnLeaderboard"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:text="@string/scoreBoard"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnFinish"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:text="@string/endGame"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>

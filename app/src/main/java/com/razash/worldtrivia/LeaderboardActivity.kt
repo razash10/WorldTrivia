@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_leaderboard.*
@@ -67,11 +68,18 @@ class LeaderboardActivity : AppCompatActivity() {
             }
         })
 
-        btnReplay.setOnClickListener {
-            val intent = Intent(this, QuestionsActivity::class.java)
-            intent.putExtra(Constants.USER_NAME, name.toString())
-            startActivity(intent)
-            finish()
+
+
+        if(name?.isEmpty()!!) {
+            btnReplay.visibility = View.GONE
+        }
+        else {
+            btnReplay.setOnClickListener {
+                val intent = Intent(this, QuestionsActivity::class.java)
+                intent.putExtra(Constants.USER_NAME, name.toString())
+                startActivity(intent)
+                finish()
+            }
         }
 
         btnFinish.setOnClickListener {

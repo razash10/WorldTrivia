@@ -21,13 +21,13 @@ class ResultActivity : AppCompatActivity() {
             tvCongrats.text = "אוי לא"
         }
         else when(score) {
-            in 1..299 -> tvCongrats.text = "טוב!"
-            in 300..599 -> tvCongrats.text = "נהדר!"
-            in 600..1199 -> tvCongrats.text = "מדהים!"
-            in 1200..1999 -> tvCongrats.text = "אדיר!"
-            in 2000..2999 -> tvCongrats.text = "וואו!"
-            in 3000..4999 -> tvCongrats.text = "פנטסטי!"
-            in 5000..9999 -> tvCongrats.text = "מטורף!"
+            in 1..499 -> tvCongrats.text = "לא רע!"
+            in 500..999 -> tvCongrats.text = "טוב!"
+            in 1000..1999 -> tvCongrats.text = "נהדר!"
+            in 2000..3999 -> tvCongrats.text = "מדהים!"
+            in 4000..7999 -> tvCongrats.text = "אדיר!"
+            in 8000..15999 -> tvCongrats.text = "וואו!"
+            in 16000..31999 -> tvCongrats.text = "מטורף!!"
             else -> tvCongrats.text = "אלוף העולם!!!"
         }
 
@@ -51,7 +51,7 @@ class ResultActivity : AppCompatActivity() {
             finish()
         }
 
-        if(score!! > 0) {
+        if(score!! > 1000) {
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("ScoreBoard")
             val post: MutableMap<String, Any> = HashMap()

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:padding="20dp"
         android:gravity="center">
 
         <ProgressBar
@@ -22,6 +22,7 @@
             android:layout_gravity="center"
             android:max="1050"
             android:paddingHorizontal="15dp"
+            android:layout_marginBottom="10dp"
             android:progress="0" />
 
         <ImageView
@@ -45,11 +46,10 @@
         <TextView
             android:id="@+id/btnOption1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="10dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
-            android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:text="@string/option1" />
@@ -57,11 +57,10 @@
         <TextView
             android:id="@+id/btnOption2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="10dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
-            android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:text="@string/option2" />
@@ -69,11 +68,10 @@
         <TextView
             android:id="@+id/btnOption3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="10dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
-            android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:text="@string/option3" />
@@ -81,11 +79,10 @@
         <TextView
             android:id="@+id/btnOption4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="10dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
-            android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:text="@string/option4" />

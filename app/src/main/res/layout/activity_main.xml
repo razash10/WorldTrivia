@@ -54,7 +54,6 @@
                 android:textColor="#616A6B"
                 android:textSize="16sp" />
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,10 +63,14 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/enteredName"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="60dp"
                     android:hint="@string/yourNameHere"
                     android:maxLength="15"
+                    android:textSize="18sp"
                     android:textColor="#363A43"
+                    android:maxLines="1"
+                    android:lines="1"
+                    android:singleLine="true"
                     android:textColorHint="#616A6B" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,8 +78,19 @@
                 android:id="@+id/btnStart"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="@string/letsStart"
-                android:layout_marginTop="20dp"
+                android:text="@string/newGame"
+                android:layout_marginTop="25dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@color/colorPrimary"/>
+
+            <Button
+                android:id="@+id/btnLeaderboard"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/scoreBoard"
+                android:layout_marginTop="10dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"

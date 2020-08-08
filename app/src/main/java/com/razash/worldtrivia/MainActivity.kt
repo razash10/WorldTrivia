@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.btnLeaderboard
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +23,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+        }
+
+        btnLeaderboard.setOnClickListener {
+            val intent = Intent(this, LeaderboardActivity::class.java)
+            intent.putExtra(Constants.USER_NAME, "")
+            startActivity(intent)
+            finish()
         }
     }
 

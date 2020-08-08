@@ -17,6 +17,7 @@ object Constants {
         countries.add(Country("ארגנטינה", "בואנוס איירס", R.drawable.ar))
         countries.add(Country("ארמניה", "ירוואן", R.drawable.am))
         countries.add(Country("אוסטריה", "וינה", R.drawable.at))
+        countries.add(Country("אוסטרליה", "קנברה", R.drawable.au))
         countries.add(Country("אזרבייג'אן", "באקו", R.drawable.az))
         countries.add(Country("איי בהאמה", "נסאו", R.drawable.bs))
         countries.add(Country("בחריין", "מנאמה", R.drawable.bh))
@@ -41,7 +42,7 @@ object Constants {
         countries.add(Country("קמרון", "יאונדה", R.drawable.cm))
         countries.add(Country("קנדה", "אוטוואה", R.drawable.ca))
         countries.add(Country("הרפובליקה המרכז אפריקאית", "באנגוי", R.drawable.cf))
-        countries.add(Country("צ'אד", "נג'מנה", R.drawable.td))
+        //countries.add(Country("צ'אד", "נג'מנה", R.drawable.td))
         countries.add(Country("צ'ילה", "סנטיאגו", R.drawable.cl))
         countries.add(Country("סין", "בייג'ינג", R.drawable.cn))
         countries.add(Country("קולומביה", "בוגוטה", R.drawable.co))
@@ -199,7 +200,7 @@ object Constants {
         countries.add(Country("וייטנאם", "האנוי", R.drawable.vn))
         countries.add(Country("תימן", "צנעא", R.drawable.ye))
         countries.add(Country("זמביה", "לוסאקה", R.drawable.zm))
-        countries.add(Country("זימבאבווה", "הררה", R.drawable.aq))
+        countries.add(Country("זימבבואה", "הררה", R.drawable.zw))
 
         return countries
     }
